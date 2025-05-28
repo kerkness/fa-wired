@@ -10,21 +10,8 @@
         }
     ],
     "autoload": {
-        "psr-4": {
-            "FaWired\\": "src/"
-        },
-        "files": [
-            "src/helpers.php"
-        ]
     },
     "require-dev": {},
-    "extra": {
-        "laravel": {
-            "providers": [
-                "FaWired\\FathomServiceProvider"
-            ]
-        }
-    },
     "repositories": [],
     "require": {
         "laravel/framework": "^10.0",
