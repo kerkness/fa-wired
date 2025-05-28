@@ -1,9 +1,8 @@
 # fa-wired
 
 [![Latest Version](https://img.shields.io/packagist/v/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/kerkness/fa-wired/Tests?label=tests)](https://github.com/kerkness/fa-wired/actions?query=workflow%3ATests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/kerkness/fa-wired/Check%20&%20fix%20styling?label=code%20style)](https://github.com/kerkness/fa-wired/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
+[![License](https://img.shields.io/packagist/l/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
 
 A Laravel package that provides Alpine.js directives and magic helpers for seamless Fathom Analytics event tracking in Blade templates and Livewire components.
 
@@ -94,7 +93,7 @@ public function submit()
 {
     // Process form...
     
-    $this->dispatch('fathom-track', event: 'contact form submitted');
+    $this->dispatch('fathom-track', name: 'contact form submitted');
 }
 ```
 
