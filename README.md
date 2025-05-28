@@ -35,7 +35,7 @@ composer require kerkness/fa-wired
 
 #### Option A: Import in your build process (Recommended)
 
-If you're using Laravel Mix, Vite, or another build tool:
+If you're using Vite, or another build tool:
 
 ```javascript
 // In your app.js or main JavaScript file
