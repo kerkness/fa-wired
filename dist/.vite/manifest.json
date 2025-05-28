@@ -1,0 +1,8 @@
+{
+  "src/resources/js/fa-wired.js": {
+    "file": "fa-wired.js",
+    "name": "fa-wired",
+    "src": "src/resources/js/fa-wired.js",
+    "isEntry": true
+  }
+}

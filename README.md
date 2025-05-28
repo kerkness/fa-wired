@@ -1,10 +1,5 @@
 # fa-wired
 
-[![Latest Version](https://img.shields.io/packagist/v/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/kerkness/fa-wired/Tests?label=tests)](https://github.com/kerkness/fa-wired/actions?query=workflow%3ATests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/kerkness/fa-wired/Check%20&%20fix%20styling?label=code%20style)](https://github.com/kerkness/fa-wired/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
-
 A Laravel package that provides Alpine.js directives and magic helpers for seamless Fathom Analytics event tracking in Blade templates and Livewire components.
 
 ## Features
@@ -34,36 +29,43 @@ composer require kerkness/fa-wired
 
 ### 2. Include the JavaScript
 
-#### Option A: Via CDN (Recommended)
-Add this script tag after your Fathom Analytics and Alpine.js scripts:
+#### Option A: Import in your build process (Recommended)
+
+If you're using Laravel Mix, Vite, or another build tool:
+
+```javascript
+// In your app.js or main JavaScript file
+import 'vendor/kerkness/fa-wired/dist/fa-wired.esm.js';
+
+// Or with explicit import
+import FaWired from 'vendor/kerkness/fa-wired/dist/fa-wired.esm.js';
+```
+
+#### Option B: Include directly in Blade template
 
 ```html
 <!-- Your existing scripts -->
 <script src="https://cdn.usefathom.com/script.js" data-site="YOUR-SITE-ID" defer></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-<!-- fa-wired -->
-<script src="https://cdn.jsdelivr.net/npm/fa-wired@latest/dist/fa-wired.js"></script>
+<!-- fa-wired from vendor directory -->
+<script src="{{ asset('vendor/kerkness/fa-wired/dist/fa-wired.js') }}"></script>
 ```
 
-#### Option B: Via NPM (For build tools)
+#### Option C: Via CDN (Alternative)
+```html
+<script src="https://cdn.jsdelivr.net/gh/kerkness/fa-wired@latest/dist/fa-wired.js"></script>
+```
+
+### 3. Publish Assets (Optional)
+
+If you want to customize or host the JavaScript yourself:
+
 ```bash
-npm install fa-wired
+php artisan vendor:publish --provider="Kerkness\FaWired\FaWiredServiceProvider" --tag="fa-wired-assets"
 ```
 
-Then import in your JavaScript:
-```javascript
-import 'fa-wired';
-// or
-import FaWired from 'fa-wired';
-```
-
-#### Option C: Download and Host
-Download the latest release from [GitHub releases](https://github.com/kerkness/fa-wired/releases) and include the `fa-wired.js` file in your project.
-
-### 3. Verify Installation
-
-Check your browser console - you should see no errors, and the `window.FaWired` object should be available.
+This will copy the compiled JavaScript files to `public/vendor/fa-wired/`.
 
 ## Quick Start
 
