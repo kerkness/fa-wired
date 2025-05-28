@@ -1,0 +1,58 @@
+{
+    "name": "fa-wired",
+    "version": "1.0.0",
+    "description": "Alpine.js wrapper for Fathom Analytics with Laravel/Livewire integration",
+    "main": "dist/fa-wired.js",
+    "module": "dist/fa-wired.esm.js",
+    "unpkg": "dist/fa-wired.umd.js",
+    "jsdelivr": "dist/fa-wired.umd.js",
+    "types": "dist/fa-wired.d.ts",
+    "files": [
+        "dist",
+        "src/resources/js"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "build:watch": "vite build --watch",
+        "preview": "vite preview",
+        "clean": "rm -rf dist",
+        "prepublishOnly": "npm run build"
+    },
+    "keywords": [
+        "fathom",
+        "analytics",
+        "alpine",
+        "alpinejs",
+        "laravel",
+        "livewire",
+        "tracking",
+        "events"
+    ],
+    "author": "Your Name <your.email@example.com>",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kerkness/fa-wired.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kerkness/fa-wired/issues"
+    },
+    "homepage": "https://github.com/kerkness/fa-wired#readme",
+    "devDependencies": {
+        "@types/node": "^20.0.0",
+        "terser": "^5.31.0",
+        "typescript": "^5.8.3",
+        "vite": "^5.4.19",
+        "vite-plugin-dts": "^4.3.0"
+    },
+    "peerDependencies": {
+        "alpinejs": "^3.0.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "engines": {
+        "node": ">=16.0.0"
+    }
+}

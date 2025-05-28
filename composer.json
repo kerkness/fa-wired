@@ -1,0 +1,43 @@
+{
+    "name": "kerkness/fa-wired",
+    "description": "Fathom events for Laravel & Livewire",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Kerkness",
+            "email": "ryan@kerkness.ca"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "FaWired\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "require-dev": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "FaWired\\FathomServiceProvider"
+            ]
+        }
+    },
+    "repositories": [],
+    "require": {
+        "laravel/framework": "^10.0",
+        "livewire/livewire": "^3.0",
+        "php": "^8.2"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
