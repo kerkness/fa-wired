@@ -6,11 +6,11 @@
  * https://github.com/kerkness/fa-wired
  */
 /*!
- * fa-wired - Fathom Analytic Events for Laravel/Livewire
+ * fa-wired - Fathom Analytics Alpine.js wrapper for Laravel/Livewire
  * https://github.com/kerkness/fa-wired
  */
 const VERSION = "1.0.0";
-const BUILD_DATE = "2025-05-28T18:23:21.992Z";
+const BUILD_DATE = "2025-05-28T19:10:27.775Z";
 const FaWired = {
   version: VERSION,
   buildDate: BUILD_DATE,
@@ -115,13 +115,13 @@ const FaWired = {
   // Initialize Livewire integration
   initializeLivewire() {
     Livewire.on("fathom-track", (data) => {
-      Alpine.store("fathom").track(data.event, data.value || null);
+      Alpine.store("fathom").track(data.name, data.value || null);
     });
     Livewire.on("fathom-form-submit", (data) => {
-      Alpine.store("fathom").submit(data.event, data.value || null);
+      Alpine.store("fathom").submit(data.name, data.value || null);
     });
     Livewire.on("fathom-conversion", (data) => {
-      Alpine.store("fathom").conversion(data.event, data.value);
+      Alpine.store("fathom").conversion(data.name, data.value);
     });
   },
   // Initialize automatic tracking features

@@ -1,5 +1,10 @@
 # fa-wired
 
+[![Latest Version](https://img.shields.io/packagist/v/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/kerkness/fa-wired/Tests?label=tests)](https://github.com/kerkness/fa-wired/actions?query=workflow%3ATests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/kerkness/fa-wired/Check%20&%20fix%20styling?label=code%20style)](https://github.com/kerkness/fa-wired/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
+
 A Laravel package that provides Alpine.js directives and magic helpers for seamless Fathom Analytics event tracking in Blade templates and Livewire components.
 
 ## Features
@@ -190,11 +195,11 @@ class ContactForm extends Component
         // Process form...
         
         // Track simple event
-        $this->dispatch('fathom-track', event: 'contact form submitted');
+        $this->dispatch('fathom-track', name: 'contact form submitted');
         
         // Track with value (e.g., for lead scoring)
         $this->dispatch('fathom-track', 
-            event: 'high value lead', 
+            name: 'high value lead', 
             value: 5000 // $50.00 in cents
         );
     }
@@ -205,7 +210,7 @@ class ContactForm extends Component
         
         // Track conversion
         $this->dispatch('fathom-conversion', 
-            event: 'subscription purchased', 
+            name: 'subscription purchased', 
             value: $planPrice * 100 // Convert to cents
         );
     }
@@ -215,7 +220,7 @@ class ContactForm extends Component
         // Process registration...
         
         // Track form submission
-        $this->dispatch('fathom-form-submit', event: 'user registration');
+        $this->dispatch('fathom-form-submit', name: 'user registration');
     }
 }
 ```
@@ -298,9 +303,9 @@ $fathom.externalLink(url, eventName)
 
 #### Livewire Events
 ```php
-$this->dispatch('fathom-track', event: 'name', value: 1000);
-$this->dispatch('fathom-form-submit', event: 'name', value: 1000);
-$this->dispatch('fathom-conversion', event: 'name', value: 1000);
+$this->dispatch('fathom-track', name: 'event name', value: 1000);
+$this->dispatch('fathom-form-submit', name: 'event name', value: 1000);
+$this->dispatch('fathom-conversion', name: 'event name', value: 1000);
 ```
 
 ## Configuration
