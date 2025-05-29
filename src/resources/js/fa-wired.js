@@ -93,29 +93,45 @@ const FaWired = {
     // Alpine.js magic helper for quick access
     Alpine.magic('fathom', () => Alpine.store('fathom'));
 
-    // Alpine.js directive for automatic click tracking
-    Alpine.directive('track-click', (el, { expression }, { evaluate }) => {
-      let config;
+    // Helper function to determine if expression should be evaluated or treated as string
+    const parseTrackingExpression = (expression, evaluate) => {
       let eventName;
       let value = null;
       
-      try {
-        // Try to evaluate as a normal Alpine expression first
-        config = evaluate(expression);
-        
-        if (typeof config === 'string') {
-          eventName = config;
-        } else if (typeof config === 'object' && config !== null) {
-          eventName = config.event;
-          value = config.value || null;
-        } else {
-          // If config is not string or object, use the raw expression
+      // Check if it looks like a JavaScript object
+      if (expression.trim().startsWith('{') && expression.trim().endsWith('}')) {
+        try {
+          const config = evaluate(expression);
+          if (typeof config === 'object' && config !== null) {
+            eventName = config.event;
+            value = config.value || null;
+          } else {
+            eventName = expression;
+          }
+        } catch (error) {
           eventName = expression;
         }
-      } catch (error) {
-        // If evaluation fails, treat the raw expression as a string
+      }
+      // Check if it's a quoted string
+      else if ((expression.trim().startsWith("'") && expression.trim().endsWith("'")) ||
+               (expression.trim().startsWith('"') && expression.trim().endsWith('"'))) {
+        try {
+          eventName = evaluate(expression);
+        } catch (error) {
+          eventName = expression;
+        }
+      }
+      // Otherwise treat as plain string
+      else {
         eventName = expression;
       }
+      
+      return { eventName, value };
+    };
+
+    // Alpine.js directive for automatic click tracking
+    Alpine.directive('track-click', (el, { expression }, { evaluate }) => {
+      const { eventName, value } = parseTrackingExpression(expression, evaluate);
 
       el.addEventListener('click', () => {
         Alpine.store('fathom').click(eventName, value);
@@ -124,24 +140,7 @@ const FaWired = {
 
     // Alpine.js directive for automatic form submission tracking
     Alpine.directive('track-submit', (el, { expression }, { evaluate }) => {
-      let config;
-      let eventName;
-      let value = null;
-      
-      try {
-        config = evaluate(expression);
-        
-        if (typeof config === 'string') {
-          eventName = config;
-        } else if (typeof config === 'object' && config !== null) {
-          eventName = config.event;
-          value = config.value || null;
-        } else {
-          eventName = expression;
-        }
-      } catch (error) {
-        eventName = expression;
-      }
+      const { eventName, value } = parseTrackingExpression(expression, evaluate);
 
       el.addEventListener('submit', () => {
         Alpine.store('fathom').submit(eventName, value);
@@ -150,26 +149,14 @@ const FaWired = {
 
     // Alpine.js directive for download tracking
     Alpine.directive('track-download', (el, { expression }, { evaluate }) => {
-      let config;
       let eventName = null;
       
       // Handle empty expression (no event name provided)
       if (!expression) {
         eventName = null;
       } else {
-        try {
-          config = evaluate(expression);
-          
-          if (typeof config === 'string') {
-            eventName = config;
-          } else if (typeof config === 'object' && config !== null) {
-            eventName = config.event || null;
-          } else {
-            eventName = expression;
-          }
-        } catch (error) {
-          eventName = expression;
-        }
+        const { eventName: parsedEventName } = parseTrackingExpression(expression, evaluate);
+        eventName = parsedEventName;
       }
       
       el.addEventListener('click', (e) => {
@@ -181,22 +168,7 @@ const FaWired = {
 
     // Alpine.js directive for external link tracking
     Alpine.directive('track-external', (el, { expression }, { evaluate }) => {
-      let config;
-      let eventName = null;
-      
-      try {
-        config = evaluate(expression);
-        
-        if (typeof config === 'string') {
-          eventName = config;
-        } else if (typeof config === 'object' && config !== null) {
-          eventName = config.event || null;
-        } else {
-          eventName = expression;
-        }
-      } catch (error) {
-        eventName = expression;
-      }
+      const { eventName } = parseTrackingExpression(expression, evaluate);
       
       el.addEventListener('click', (e) => {
         const href = el.getAttribute('href');
