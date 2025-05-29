@@ -8,11 +8,9 @@ A Laravel package that provides Alpine.js directives and magic helpers for seaml
 ## Features
 
 - 🎯 **Alpine.js Directives** - Simple HTML attributes for tracking clicks, form submissions, downloads, and external links
-- ✨ **Magic Helper** - `$fathom` magic helper for programmatic tracking
-- 🔥 **Livewire Integration** - Built-in support for Livewire v3 events
-- 📊 **E-commerce Ready** - Track conversions with values in cents
-- 🚀 **Zero Configuration** - Auto-detects Alpine.js and Livewire
-- 📝 **TypeScript Support** - Full TypeScript declarations included
+- ✨ **Magic Helper** - `$fathom` magic helper for programmatic tracking in JS
+- 🔥 **Livewire Integration** - dispatch tracking events from Livewire components
+- 📊 **Track E-commerce Values** - Track conversions with values in cents
 
 ## Requirements
 
