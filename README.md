@@ -1,4 +1,4 @@
-# fa-wired
+# Fathom Analytic Evenst for Laravel/Livewire
 
 [![Latest Version](https://img.shields.io/packagist/v/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
 [![License](https://img.shields.io/packagist/l/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
