@@ -1,7 +1,6 @@
 # fa-wired
 
 [![Latest Version](https://img.shields.io/packagist/v/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
-[![Total Downloads](https://img.shields.io/packagist/dt/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
 [![License](https://img.shields.io/packagist/l/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
 
 A Laravel package that provides Alpine.js directives and magic helpers for seamless Fathom Analytics event tracking in Blade templates and Livewire components.
