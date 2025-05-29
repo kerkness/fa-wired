@@ -10,7 +10,7 @@
  * https://github.com/kerkness/fa-wired
  */
 const VERSION = "1.0.0";
-const BUILD_DATE = "2025-05-28T19:10:27.775Z";
+const BUILD_DATE = "2025-05-29T14:28:49.985Z";
 const FaWired = {
   version: VERSION,
   buildDate: BUILD_DATE,
@@ -79,7 +79,12 @@ const FaWired = {
     });
     Alpine.magic("fathom", () => Alpine.store("fathom"));
     Alpine.directive("track-click", (el, { expression }, { evaluate }) => {
-      const config = evaluate(expression);
+      let config;
+      try {
+        config = evaluate(expression);
+      } catch (error) {
+        config = expression;
+      }
       const eventName = typeof config === "string" ? config : config.event;
       const value = typeof config === "object" ? config.value : null;
       el.addEventListener("click", () => {
@@ -87,7 +92,12 @@ const FaWired = {
       });
     });
     Alpine.directive("track-submit", (el, { expression }, { evaluate }) => {
-      const config = evaluate(expression);
+      let config;
+      try {
+        config = evaluate(expression);
+      } catch (error) {
+        config = expression;
+      }
       const eventName = typeof config === "string" ? config : config.event;
       const value = typeof config === "object" ? config.value : null;
       el.addEventListener("submit", () => {
@@ -95,7 +105,12 @@ const FaWired = {
       });
     });
     Alpine.directive("track-download", (el, { expression }, { evaluate }) => {
-      const config = evaluate(expression);
+      let config;
+      try {
+        config = evaluate(expression);
+      } catch (error) {
+        config = expression;
+      }
       const eventName = typeof config === "string" ? config : config.event;
       el.addEventListener("click", (e) => {
         const href = el.getAttribute("href");
@@ -104,7 +119,12 @@ const FaWired = {
       });
     });
     Alpine.directive("track-external", (el, { expression }, { evaluate }) => {
-      const config = evaluate(expression);
+      let config;
+      try {
+        config = evaluate(expression);
+      } catch (error) {
+        config = expression;
+      }
       const eventName = typeof config === "string" ? config : config.event;
       el.addEventListener("click", (e) => {
         const href = el.getAttribute("href");

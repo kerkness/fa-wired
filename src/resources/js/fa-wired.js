@@ -95,7 +95,16 @@ const FaWired = {
 
     // Alpine.js directive for automatic click tracking
     Alpine.directive('track-click', (el, { expression }, { evaluate }) => {
-      const config = evaluate(expression);
+      let config;
+      
+      try {
+        // Try to evaluate as a normal Alpine expression first
+        config = evaluate(expression);
+      } catch (error) {
+        // If evaluation fails, treat the raw expression as a string
+        config = expression;
+      }
+      
       const eventName = typeof config === 'string' ? config : config.event;
       const value = typeof config === 'object' ? config.value : null;
 
@@ -106,7 +115,14 @@ const FaWired = {
 
     // Alpine.js directive for automatic form submission tracking
     Alpine.directive('track-submit', (el, { expression }, { evaluate }) => {
-      const config = evaluate(expression);
+      let config;
+      
+      try {
+        config = evaluate(expression);
+      } catch (error) {
+        config = expression;
+      }
+      
       const eventName = typeof config === 'string' ? config : config.event;
       const value = typeof config === 'object' ? config.value : null;
 
@@ -117,7 +133,14 @@ const FaWired = {
 
     // Alpine.js directive for download tracking
     Alpine.directive('track-download', (el, { expression }, { evaluate }) => {
-      const config = evaluate(expression);
+      let config;
+      
+      try {
+        config = evaluate(expression);
+      } catch (error) {
+        config = expression;
+      }
+      
       const eventName = typeof config === 'string' ? config : config.event;
       
       el.addEventListener('click', (e) => {
@@ -129,7 +152,14 @@ const FaWired = {
 
     // Alpine.js directive for external link tracking
     Alpine.directive('track-external', (el, { expression }, { evaluate }) => {
-      const config = evaluate(expression);
+      let config;
+      
+      try {
+        config = evaluate(expression);
+      } catch (error) {
+        config = expression;
+      }
+      
       const eventName = typeof config === 'string' ? config : config.event;
       
       el.addEventListener('click', (e) => {

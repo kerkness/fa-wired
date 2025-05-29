@@ -1,4 +1,4 @@
-# Fathom Analytic Evenst for Laravel/Livewire
+# Fathom Analytics Events for Laravel/Livewire
 
 [![Latest Version](https://img.shields.io/packagist/v/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
 [![License](https://img.shields.io/packagist/l/kerkness/fa-wired.svg?style=flat-square)](https://packagist.org/packages/kerkness/fa-wired)
@@ -72,12 +72,12 @@ This will copy the compiled JavaScript files to `public/vendor/fa-wired/`.
 
 ### Track Button Clicks
 ```html
-<button x-track-click="'header cta'">Get Started</button>
+<button x-track-click="header cta">Get Started</button>
 ```
 
 ### Track Form Submissions
 ```html
-<form x-track-submit="'newsletter signup'">
+<form x-track-submit="newsletter signup">
     <input type="email" placeholder="Enter email">
     <button type="submit">Subscribe</button>
 </form>
@@ -100,7 +100,7 @@ public function submit()
 
 #### Simple Click Tracking
 ```html
-<button x-track-click="'button click'">
+<button x-track-click="button click">
     Track Simple Click
 </button>
 ```
@@ -114,7 +114,7 @@ public function submit()
 
 #### Form Submission Tracking
 ```html
-<form x-track-submit="'newsletter signup'">
+<form x-track-submit="newsletter signup">
     <input type="email" placeholder="Enter email">
     <button type="submit">Subscribe</button>
 </form>
@@ -128,14 +128,14 @@ public function submit()
 </a>
 
 <!-- Custom event name -->
-<a href="/files/pricing.pdf" x-track-download="'pricing guide download'">
+<a href="/files/pricing.pdf" x-track-download="pricing guide download">
     Download Pricing
 </a>
 ```
 
 #### External Link Tracking
 ```html
-<a href="https://example.com" x-track-external="'partner site visit'">
+<a href="https://example.com" x-track-external="partner site visit">
     Visit Partner Site
 </a>
 ```
@@ -225,7 +225,7 @@ class ContactForm extends Component
 
 #### Dynamic Event Names
 ```blade
-<button x-track-click="'product view: {{ $product->name }}'">
+<button x-track-click="product view: {{ $product->name }}">
     View {{ $product->name }}
 </button>
 ```
@@ -237,7 +237,7 @@ class ContactForm extends Component
         Premium Feature
     </button>
 @else
-    <button x-track-click="'upgrade prompt shown'">
+    <button x-track-click="upgrade prompt shown">
         Upgrade to Premium
     </button>
 @endif
