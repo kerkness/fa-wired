@@ -385,40 +385,6 @@ Make sure scripts load in this order:
 3. fa-wired
 4. Your custom scripts
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-### Development Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/kerkness/fa-wired.git
-cd fa-wired
-
-# Install dependencies
-npm install
-
-# Build the package
-npm run build
-
-# Watch for changes during development
-npm run build:watch
-```
-
-## Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
-
-## Security Vulnerabilities
-
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
-
-## Credits
-
-- [kerkness](https://github.com/kerkness)
-- [All Contributors](../../contributors)
-
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
