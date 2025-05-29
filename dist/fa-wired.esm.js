@@ -10,7 +10,7 @@
  * https://github.com/kerkness/fa-wired
  */
 const VERSION = "1.0.0";
-const BUILD_DATE = "2025-05-29T14:28:49.985Z";
+const BUILD_DATE = "2025-05-29T15:29:10.990Z";
 const FaWired = {
   version: VERSION,
   buildDate: BUILD_DATE,
@@ -80,38 +80,65 @@ const FaWired = {
     Alpine.magic("fathom", () => Alpine.store("fathom"));
     Alpine.directive("track-click", (el, { expression }, { evaluate }) => {
       let config;
+      let eventName;
+      let value = null;
       try {
         config = evaluate(expression);
+        if (typeof config === "string") {
+          eventName = config;
+        } else if (typeof config === "object" && config !== null) {
+          eventName = config.event;
+          value = config.value || null;
+        } else {
+          eventName = expression;
+        }
       } catch (error) {
-        config = expression;
+        eventName = expression;
       }
-      const eventName = typeof config === "string" ? config : config.event;
-      const value = typeof config === "object" ? config.value : null;
       el.addEventListener("click", () => {
         Alpine.store("fathom").click(eventName, value);
       });
     });
     Alpine.directive("track-submit", (el, { expression }, { evaluate }) => {
       let config;
+      let eventName;
+      let value = null;
       try {
         config = evaluate(expression);
+        if (typeof config === "string") {
+          eventName = config;
+        } else if (typeof config === "object" && config !== null) {
+          eventName = config.event;
+          value = config.value || null;
+        } else {
+          eventName = expression;
+        }
       } catch (error) {
-        config = expression;
+        eventName = expression;
       }
-      const eventName = typeof config === "string" ? config : config.event;
-      const value = typeof config === "object" ? config.value : null;
       el.addEventListener("submit", () => {
         Alpine.store("fathom").submit(eventName, value);
       });
     });
     Alpine.directive("track-download", (el, { expression }, { evaluate }) => {
       let config;
-      try {
-        config = evaluate(expression);
-      } catch (error) {
-        config = expression;
+      let eventName = null;
+      if (!expression) {
+        eventName = null;
+      } else {
+        try {
+          config = evaluate(expression);
+          if (typeof config === "string") {
+            eventName = config;
+          } else if (typeof config === "object" && config !== null) {
+            eventName = config.event || null;
+          } else {
+            eventName = expression;
+          }
+        } catch (error) {
+          eventName = expression;
+        }
       }
-      const eventName = typeof config === "string" ? config : config.event;
       el.addEventListener("click", (e) => {
         const href = el.getAttribute("href");
         const fileName = href ? href.split("/").pop() : "unknown";
@@ -120,12 +147,19 @@ const FaWired = {
     });
     Alpine.directive("track-external", (el, { expression }, { evaluate }) => {
       let config;
+      let eventName = null;
       try {
         config = evaluate(expression);
+        if (typeof config === "string") {
+          eventName = config;
+        } else if (typeof config === "object" && config !== null) {
+          eventName = config.event || null;
+        } else {
+          eventName = expression;
+        }
       } catch (error) {
-        config = expression;
+        eventName = expression;
       }
-      const eventName = typeof config === "string" ? config : config.event;
       el.addEventListener("click", (e) => {
         const href = el.getAttribute("href");
         Alpine.store("fathom").externalLink(href, eventName);
